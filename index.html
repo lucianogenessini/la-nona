@@ -3,562 +3,656 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Textil La Nona</title> 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Textil La Nona</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,650;1,9..144,560;1,9..144,650&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="img/hero.webp" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ["Inter", "sans-serif"],
+              sans: ["Source Sans 3", "sans-serif"],
+              display: ["Fraunces", "serif"],
             },
             colors: {
-              "petrol-blue": {
-                50: "#f0f9fa",
-                100: "#e0f2f7",
-                200: "#c2e6f0",
-                300: "#94d5e7",
-                400: "#60bfda",
-                500: "#3ca8cc",
-                600: "#2988b0",
-                700: "#216c8f",
-                800: "#1e5a75",
-                900: "#1c4d63",
-                950: "#113040",
-              },
+              paper: "#F3EEE6",
+              warm: "#E7DFD2",
+              ink: "#1B3A5C",
+              deep: "#12283F",
+              mustard: "#C4843C",
+              thread: "#8AA8C0",
             },
           },
         },
       };
     </script>
-    <link rel="stylesheet" href="/index.css" />
+    <style>
+      section[id] {
+        scroll-margin-top: 6.5rem;
+      }
+
+      :focus-visible {
+        outline: 2px solid #c4843c;
+        outline-offset: 3px;
+      }
+
+      .spool-rig {
+        transform-box: fill-box;
+        transform-origin: 0 0;
+        animation: haul 3s ease-in-out infinite;
+      }
+
+      .yarn,
+      .intake {
+        stroke-dasharray: 160;
+        stroke-dashoffset: 160;
+        animation: wind 3s linear infinite;
+      }
+
+      .feed {
+        stroke-dasharray: 90;
+        stroke-dashoffset: 90;
+        opacity: 0;
+        animation: feed 3s linear infinite;
+      }
+
+      .loom-warp {
+        animation: loom-glow 3s linear infinite;
+      }
+
+      .hub {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: spin 0.7s linear infinite;
+      }
+
+      @keyframes haul {
+        0%,
+        32% {
+          transform: translateX(0);
+        }
+        58%,
+        80% {
+          transform: translateX(39%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes wind {
+        0% {
+          stroke-dashoffset: 160;
+        }
+        28% {
+          stroke-dashoffset: 0;
+        }
+        90% {
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: 160;
+        }
+      }
+
+      @keyframes feed {
+        0%,
+        54% {
+          stroke-dashoffset: 90;
+          opacity: 0;
+        }
+        62% {
+          opacity: 1;
+        }
+        76% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+        88%,
+        100% {
+          stroke-dashoffset: 90;
+          opacity: 0;
+        }
+      }
+
+      @keyframes loom-glow {
+        0%,
+        54% {
+          opacity: 0.45;
+        }
+        70%,
+        82% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.45;
+        }
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .spool-rig {
+          animation: none;
+          transform: translateX(39%);
+        }
+
+        .yarn,
+        .intake,
+        .feed {
+          animation: none;
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+
+        .loom-warp,
+        .hub {
+          animation: none;
+          opacity: 1;
+        }
+      }
+    </style>
   </head>
-  <body class="bg-white text-gray-800 font-sans">
-    <!-- Header -->
-    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
-          <a href="#inicio" class="text-2xl font-bold text-petrol-blue-800">
-            Textil La Nona
-          </a>
-          <nav class="hidden md:flex space-x-8">
-            <a
-              href="#inicio"
-              class="text-gray-600 hover:text-petrol-blue-700 transition-colors duration-300 font-medium"
-              >Inicio</a
-            >
-            <a
-              href="#productos"
-              class="text-gray-600 hover:text-petrol-blue-700 transition-colors duration-300 font-medium"
-              >Productos</a
-            >
-            <a
-              href="#servicios"
-              class="text-gray-600 hover:text-petrol-blue-700 transition-colors duration-300 font-medium"
-              >Servicios</a
-            >
-            <a
-              href="#sobre-nosotros"
-              class="text-gray-600 hover:text-petrol-blue-700 transition-colors duration-300 font-medium"
-              >Sobre Nosotros</a
-            >
-            <a
-              href="#contacto"
-              class="text-gray-600 hover:text-petrol-blue-700 transition-colors duration-300 font-medium"
-              >Contacto</a
-            >
-          </nav>
-          <div class="md:hidden">
-            <button
-              id="mobile-menu-button"
-              class="text-gray-600 hover:text-petrol-blue-700"
-            >
-              <svg
-                id="open-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="h-6 w-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                ></path>
-              </svg>
-              <svg
-                id="close-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="h-6 w-6 hidden"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
+  <body class="bg-paper font-sans text-ink antialiased">
+    <svg class="hidden" aria-hidden="true">
+      <symbol id="wa" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.5 3.48 1.39 4.94L2 22l5.31-1.38c1.41.83 3.04 1.28 4.73 1.28h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.26h-.01c-1.48 0-2.92-.41-4.2-1.19l-.3-.18-3.12.81.83-3.04-.2-.32c-.85-1.35-1.3-2.9-1.3-4.52 0-4.59 3.73-8.32 8.32-8.32 4.59 0 8.32 3.73 8.32 8.32 0 4.59-3.73 8.32-8.32 8.32zm4.53-6.23c-.25-.12-1.47-.72-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.64.81-.79.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.66-1.22-1.48-1.36-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.76 2.68 4.27 3.77 2.51 1.08 2.51.72 2.96.69.45-.03 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.1-.23-.16-.48-.28z"
+        />
+      </symbol>
+    </svg>
+
+    <header class="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm">
+      <div class="mx-auto flex h-[5.5rem] max-w-6xl items-center justify-between gap-4 px-5 md:h-24">
+        <a href="#inicio" class="flex min-w-0 items-center gap-1.5">
+          <img
+            src="img/logo-mark.webp"
+            alt=""
+            width="420"
+            height="287"
+            class="h-16 w-auto md:h-20"
+          />
+          <span
+            class="font-display text-xl font-semibold italic leading-[0.85] tracking-tight text-ink md:text-2xl"
+            >TEXTIL<br />LA NONA</span
+          >
+        </a>
+        <nav class="hidden items-center gap-x-4 text-sm font-medium text-ink/80 xl:flex">
+          <a href="#inicio" class="transition-colors hover:text-mustard">Inicio</a>
+          <a href="#productos" class="transition-colors hover:text-mustard">Productos</a>
+          <a href="#revendedores" class="transition-colors hover:text-mustard">Revendedores</a>
+          <a href="#carreteles" class="transition-colors hover:text-mustard">Carreteles</a>
+          <a href="#servicios" class="transition-colors hover:text-mustard">Servicios</a>
+          <a href="#sobre-nosotros" class="transition-colors hover:text-mustard">Nosotros</a>
+          <a href="#contacto" class="transition-colors hover:text-mustard">Contacto</a>
+        </nav>
+        <button
+          id="mobile-menu-button"
+          class="text-ink xl:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menú"
+        >
+          <svg id="open-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
-      <!-- Mobile Menu -->
-      <div
-        id="mobile-menu"
-        class="md:hidden hidden transition-all duration-300 ease-in-out"
-      >
-        <nav class="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-white">
-          <a
-            href="#inicio"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-petrol-blue-800 hover:bg-gray-50"
-            >Inicio</a
-          >
-          <a
-            href="#productos"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-petrol-blue-800 hover:bg-gray-50"
-            >Productos</a
-          >
-          <a
-            href="#servicios"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-petrol-blue-800 hover:bg-gray-50"
-            >Servicios</a
-          >
-          <a
-            href="#sobre-nosotros"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-petrol-blue-800 hover:bg-gray-50"
-            >Sobre Nosotros</a
-          >
-          <a
-            href="#contacto"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-petrol-blue-800 hover:bg-gray-50"
-            >Contacto</a
-          >
+      <div id="mobile-menu" class="hidden bg-paper xl:hidden">
+        <nav class="mx-auto flex max-w-6xl flex-col px-5 pb-5 text-base font-medium">
+          <a href="#inicio" class="py-2 text-ink hover:text-mustard">Inicio</a>
+          <a href="#productos" class="py-2 text-ink hover:text-mustard">Productos</a>
+          <a href="#revendedores" class="py-2 text-ink hover:text-mustard">Revendedores</a>
+          <a href="#carreteles" class="py-2 text-ink hover:text-mustard">Carreteles</a>
+          <a href="#servicios" class="py-2 text-ink hover:text-mustard">Servicios</a>
+          <a href="#sobre-nosotros" class="py-2 text-ink hover:text-mustard">Nosotros</a>
+          <a href="#contacto" class="py-2 text-ink hover:text-mustard">Contacto</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <!-- Hero Section -->
-      <section
-        id="inicio"
-        class="relative h-[60vh] md:h-[80vh] flex items-center justify-center text-center text-white"
-      >
-        <div class="absolute inset-0 bg-black/50 z-10"></div>
-        <img
-          src="img/pila-de-fondo-de-textiles.jpg"
-          alt="Taller textil"
-          class="absolute inset-0 w-full h-full object-cover"
-        />
-        <div class="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
-          <h1
-            class="text-4xl md:text-6xl font-bold mb-4 tracking-tight leading-tight"
-            style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7)"
-          >
-            Calidad textil argentina para tu hogar y tu taller
-          </h1>
-          <p
-            class="text-lg md:text-xl max-w-2xl mx-auto mb-8"
-            style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7)"
-          >
-            Soluciones en limpieza y urdido con la confianza y durabilidad que
-            nos caracteriza.
-          </p>
+      <section id="inicio" class="relative overflow-hidden bg-paper">
+        <div class="mx-auto grid max-w-6xl md:min-h-[34rem] md:grid-cols-2 md:items-center">
+          <div class="relative z-10 px-5 py-14 md:py-20 lg:py-24">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-mustard">Textil La Nona</p>
+            <h1 class="mt-4 font-display text-4xl font-semibold leading-[1.05] text-ink md:text-5xl lg:text-6xl">
+              Calidad textil argentina para tu hogar y tu taller
+            </h1>
+            <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink/75">
+              Soluciones en limpieza y urdido con la confianza y durabilidad que nos caracteriza.
+            </p>
+            <a
+              href="#productos"
+              class="mt-8 inline-flex bg-ink px-6 py-3 font-semibold text-paper transition-colors hover:bg-mustard"
+              >Ver Productos</a
+            >
+          </div>
+        </div>
+        <div class="relative h-56 w-full md:absolute md:inset-y-0 md:right-0 md:h-auto md:w-[48vw]">
+          <img
+            src="img/hero.webp"
+            alt="Taller textil"
+            width="1280"
+            height="854"
+            class="h-full w-full object-cover"
+          />
+          <div class="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-paper to-transparent md:hidden"></div>
+          <div class="pointer-events-none absolute inset-y-0 left-0 hidden w-40 bg-gradient-to-r from-paper to-transparent md:block lg:w-56"></div>
+        </div>
+      </section>
+
+      <section id="productos" class="bg-warm">
+        <div class="mx-auto max-w-6xl px-5 py-20 md:py-24">
+          <div class="mb-12 max-w-2xl">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-mustard">Productos</p>
+            <h2 class="mt-3 font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">Nuestros Productos</h2>
+            <p class="mt-4 text-lg text-ink/75">Fabricación nacional con la mejor materia prima.</p>
+          </div>
+          <div class="grid gap-12 md:grid-cols-3 md:gap-8">
+            <article class="flex flex-col">
+              <div class="overflow-hidden">
+                <img
+                  src="img/trapo.webp"
+                  alt="Trapo de Piso Premium"
+                  width="1200"
+                  height="1600"
+                  loading="lazy"
+                  class="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                />
+              </div>
+              <h3 class="mt-5 font-display text-2xl font-semibold text-ink">Trapo de Piso Premium</h3>
+              <p class="mt-2 leading-relaxed text-ink/75">
+                100% algodón, máxima absorción y durabilidad. Ideal para todo tipo de superficies.
+              </p>
+              <div class="mt-auto flex justify-center pt-5 md:justify-start">
+                <a
+                  href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-2 bg-ink px-4 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-mustard"
+                >
+                  <svg class="h-5 w-5" aria-hidden="true"><use href="#wa" /></svg>
+                  Quiero más información!
+                </a>
+              </div>
+            </article>
+            <article class="flex flex-col">
+              <div class="overflow-hidden">
+                <img
+                  src="img/urdido.webp"
+                  alt="Recarga de urdido"
+                  width="1200"
+                  height="900"
+                  loading="lazy"
+                  class="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                />
+              </div>
+              <h3 class="mt-5 font-display text-2xl font-semibold text-ink">Recarga de Urdido</h3>
+              <p class="mt-2 leading-relaxed text-ink/75">
+                Recarga de carreteles de urdido. Urdido 12/2 y 8/1. Carreteles de 70cm y 100cm.
+              </p>
+              <div class="mt-auto flex justify-center pt-5 md:justify-start">
+                <a
+                  href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-2 bg-ink px-4 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-mustard"
+                >
+                  <svg class="h-5 w-5" aria-hidden="true"><use href="#wa" /></svg>
+                  Quiero más información!
+                </a>
+              </div>
+            </article>
+            <article class="flex flex-col">
+              <div class="overflow-hidden">
+                <img
+                  src="img/trapo-color.webp"
+                  alt="Trapos de colores y tamaños"
+                  width="1200"
+                  height="1600"
+                  loading="lazy"
+                  class="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                />
+              </div>
+              <h3 class="mt-5 font-display text-2xl font-semibold text-ink">Variedad en Trapos de Colores y Tamaños</h3>
+              <p class="mt-2 leading-relaxed text-ink/75">Trapos de 100% algodón, en diferentes colores y tamaños.</p>
+              <div class="mt-auto flex justify-center pt-5 md:justify-start">
+                <a
+                  href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-2 bg-ink px-4 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-mustard"
+                >
+                  <svg class="h-5 w-5" aria-hidden="true"><use href="#wa" /></svg>
+                  Quiero más información!
+                </a>
+              </div>
+            </article>
+          </div>
           <a
-            href="#productos"
-            class="bg-petrol-blue-700 hover:bg-petrol-blue-800 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform duration-300 transform hover:scale-105"
+            href="#contacto"
+            class="mx-auto mt-14 flex w-fit bg-mustard px-6 py-3 font-semibold text-paper transition-colors hover:bg-ink md:mx-0"
+            >Ver más productos</a
           >
-            Ver Productos
+        </div>
+      </section>
+
+      <section id="revendedores" class="bg-paper">
+        <div class="mx-auto max-w-6xl px-5 py-20 md:py-24">
+          <div class="mb-12 max-w-2xl">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-mustard">Revendedores</p>
+            <h2 class="mt-3 font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">
+              Precios especiales para revendedores
+            </h2>
+            <p class="mt-4 text-lg text-ink/75">
+              Si comprás para volver a vender, pedí tu cotización. Trapos y urdido, directo de fábrica.
+            </p>
+          </div>
+          <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <article>
+              <svg class="h-9 w-9 text-ink" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <path d="M6 16.5 16.5 6H26v9.5L15.5 26 6 16.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <circle cx="21.5" cy="10.5" r="1.4" fill="currentColor" />
+              </svg>
+              <h3 class="mt-4 font-display text-2xl font-semibold text-ink">Precio de reventa</h3>
+              <p class="mt-2 leading-relaxed text-ink/75">Cotización especial para quien compra para vender.</p>
+            </article>
+            <article>
+              <svg class="h-9 w-9 text-ink" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1.5" />
+                <path d="M5 16h22M16 5c2.8 3.2 4.2 7 4.2 11S18.8 23.8 16 27c-2.8-3.2-4.2-7-4.2-11S13.2 8.2 16 5Z" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+              <h3 class="mt-4 font-display text-2xl font-semibold text-ink">Hecho en el país</h3>
+              <p class="mt-2 leading-relaxed text-ink/75">Trapos de algodón y urdido, fabricación nacional en Misiones.</p>
+            </article>
+            <article>
+              <svg class="h-9 w-9 text-ink" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <path d="M5 13h22l-2 14H7L5 13Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M9 13V9a7 7 0 0 1 14 0v4" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+              <h3 class="mt-4 font-display text-2xl font-semibold text-ink">Para tu negocio</h3>
+              <p class="mt-2 leading-relaxed text-ink/75">
+                Colores, tamaños y carreteles de 70 cm y 100 cm, urdido 12/2 y 8/1.
+              </p>
+            </article>
+            <article>
+              <svg class="h-9 w-9 text-ink" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <path d="M7 16a9 9 0 0 1 15.2-6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M25 16a9 9 0 0 1-15.2 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M21 6h4v4M11 26H7v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <h3 class="mt-4 font-display text-2xl font-semibold text-ink">Reposición al instante</h3>
+              <p class="mt-2 leading-relaxed text-ink/75">Dejás el carretel vacío y te llevás otro.</p>
+            </article>
+          </div>
+          <a
+            href="https://wa.me/543754434100?text=Hola!%20quiero%20el%20precio%20especial%20para%20revendedores."
+            target="_blank"
+            rel="noopener"
+            class="mx-auto mt-12 flex w-fit items-center gap-2 bg-mustard px-6 py-3 font-semibold text-paper transition-colors hover:bg-ink md:mx-0"
+          >
+            <svg class="h-5 w-5" aria-hidden="true"><use href="#wa" /></svg>
+            Pedir precio de revendedor
           </a>
         </div>
       </section>
 
-      <!-- Products Section -->
-      <section id="productos" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
-              Nuestros Productos
+      <section id="carreteles" class="bg-ink text-paper">
+        <div class="mx-auto max-w-6xl px-5 py-20 md:py-24">
+          <div class="mb-8 max-w-2xl">
+            <h2 class="font-display text-3xl font-semibold leading-tight md:text-5xl">Carreteles de urdido</h2>
+            <p class="mt-4 text-lg text-paper/75">Urdido 12/2 y 8/1, en carreteles de 70 cm y 100 cm.</p>
+          </div>
+          <svg viewBox="0 0 1000 340" class="w-full" role="img" aria-labelledby="carretel-titulo">
+            <title id="carretel-titulo">Un carretel se carga de urdido y se traslada hasta el telar</title>
+            <g fill="none">
+              <rect x="700" y="46" width="260" height="248" rx="6" stroke="#F3EEE6" stroke-width="2" />
+              <line x1="718" y1="74" x2="942" y2="74" stroke="#C4843C" stroke-width="7" stroke-linecap="round" />
+              <line x1="718" y1="266" x2="942" y2="266" stroke="#C4843C" stroke-width="7" stroke-linecap="round" />
+              <g stroke="#8AA8C0" stroke-width="1.6">
+                <line x1="750" y1="86" x2="750" y2="254" />
+                <line x1="790" y1="86" x2="790" y2="254" />
+                <line x1="830" y1="86" x2="830" y2="254" />
+                <line x1="870" y1="86" x2="870" y2="254" />
+                <line x1="910" y1="86" x2="910" y2="254" />
+              </g>
+              <g class="loom-warp" stroke="#F3EEE6" stroke-width="1.5" stroke-linecap="round">
+                <line x1="720" y1="112" x2="938" y2="112" />
+                <line x1="720" y1="140" x2="938" y2="140" />
+                <line x1="720" y1="168" x2="938" y2="168" />
+                <line x1="720" y1="196" x2="938" y2="196" />
+                <line x1="720" y1="224" x2="938" y2="224" />
+              </g>
+            </g>
+            <path class="feed" d="M668 170 C 686 170, 700 168, 718 168" fill="none" stroke="#E4EEF5" stroke-width="2" />
+            <g class="spool-rig">
+              <rect width="1000" height="340" fill="none" />
+              <path class="intake" d="M4 176 C 22 150, 48 128, 86 148" fill="none" stroke="#E4EEF5" stroke-width="1.75" />
+              <line x1="84" y1="170" x2="228" y2="170" stroke="#C4843C" stroke-width="8" stroke-linecap="round" />
+              <g fill="none" stroke="#F3EEE6" stroke-width="1.6" stroke-linecap="round">
+                <line class="yarn" x1="86" y1="98" x2="226" y2="98" />
+                <line class="yarn" x1="86" y1="122" x2="226" y2="122" />
+                <line class="yarn" x1="86" y1="146" x2="226" y2="146" />
+                <line class="yarn" x1="86" y1="170" x2="226" y2="170" />
+                <line class="yarn" x1="86" y1="194" x2="226" y2="194" />
+                <line class="yarn" x1="86" y1="218" x2="226" y2="218" />
+                <line class="yarn" x1="86" y1="242" x2="226" y2="242" />
+              </g>
+              <g>
+                <rect x="40" y="70" width="44" height="200" rx="12" fill="#8AA8C0" stroke="#F3EEE6" stroke-width="2" />
+                <g transform="translate(62 170)">
+                  <g class="hub">
+                    <circle r="14" fill="#C4843C" />
+                    <circle cy="-5" r="2.4" fill="#F3EEE6" />
+                  </g>
+                </g>
+              </g>
+              <g>
+                <rect x="228" y="70" width="44" height="200" rx="12" fill="#8AA8C0" stroke="#F3EEE6" stroke-width="2" />
+                <g transform="translate(250 170)">
+                  <g class="hub">
+                    <circle r="14" fill="#C4843C" />
+                    <circle cy="-5" r="2.4" fill="#F3EEE6" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section id="servicios" class="bg-warm">
+        <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-24 lg:gap-16">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-mustard">Servicios</p>
+            <h2 class="mt-3 font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">
+              Recarga de Carreteles de Urdido
             </h2>
-            <p class="text-lg text-gray-500 mt-2">
-              Fabricación nacional con la mejor materia prima.
+            <p class="mt-5 text-lg leading-relaxed text-ink/75">
+              Ofrecemos un servicio único en la región de Misiones, especializado en la recarga de carreteles de
+              urdido para la industria textil. Optimizamos sus procesos productivos con hilos de primera calidad y un
+              servicio rápido y confiable.
             </p>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Product Card 1 -->
-            <div
-              class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 group"
-            >
-              <img
-                class="w-full h-56 object-cover"
-                src="img/trapo.jpg?random=2"
-                alt="Trapo de Piso Premium"
-              />
-              <div class="p-6">
-                <h3 class="font-bold text-xl mb-2 text-petrol-blue-900">
-                  Trapo de Piso Premium
-                </h3>
-                <p class="text-gray-600 text-base mb-4">
-                  100% algodón, máxima absorción y durabilidad. Ideal para todo
-                  tipo de superficies.
-                </p>
-                <a
-                  href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
-                  target="_blank"
-                  class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300"
-                >
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    class="h-5 w-5 mr-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.5 3.48 1.39 4.94L2 22l5.31-1.38c1.41.83 3.04 1.28 4.73 1.28h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.26h-.01c-1.48 0-2.92-.41-4.2-1.19l-.3-.18-3.12.81.83-3.04-.2-.32c-.85-1.35-1.3-2.9-1.3-4.52 0-4.59 3.73-8.32 8.32-8.32 4.59 0 8.32 3.73 8.32 8.32 0 4.59-3.73 8.32-8.32 8.32zm4.53-6.23c-.25-.12-1.47-.72-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.64.81-.79.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.66-1.22-1.48-1.36-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.76 2.68 4.27 3.77 2.51 1.08 2.51.72 2.96.69.45-.03 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.1-.23-.16-.48-.28z"
-                    ></path>
-                  </svg>
-                  Quiero más información!
-                </a>
-              </div>
-            </div>
-            <!-- Product Card 2 -->
-            <div
-              class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 group"
-            >
-              <img
-                class="w-full h-56 object-cover"
-                src="img/urdido.jpg?random=3"
-                alt="Trapo de Piso Estándar"
-              />
-              <div class="p-6">
-                <h3 class="font-bold text-xl mb-2 text-petrol-blue-900">
-                  Recarga de Urdido
-                </h3>
-                <p class="text-gray-600 text-base mb-4">
-                  Recarga de carreteles de urdido. Urido 12/2 y 8/1. Carreteles de 70cm y 100cm.
-                </p>
-                <a
-                  href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
-                  target="_blank"
-                  class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300"
-                >
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    class="h-5 w-5 mr-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.5 3.48 1.39 4.94L2 22l5.31-1.38c1.41.83 3.04 1.28 4.73 1.28h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.26h-.01c-1.48 0-2.92-.41-4.2-1.19l-.3-.18-3.12.81.83-3.04-.2-.32c-.85-1.35-1.3-2.9-1.3-4.52 0-4.59 3.73-8.32 8.32-8.32 4.59 0 8.32 3.73 8.32 8.32 0 4.59-3.73 8.32-8.32 8.32zm4.53-6.23c-.25-.12-1.47-.72-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.64.81-.79.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.66-1.22-1.48-1.36-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.76 2.68 4.27 3.77 2.51 1.08 2.51.72 2.96.69.45-.03 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.1-.23-.16-.48-.28z"
-                    ></path>
-                  </svg>
-                  Quiero más información!
-                </a>
-              </div>
-            </div>
-            <!-- Product Card 3 -->
-            <div
-              class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 group"
-            >
-              <img
-                class="w-full h-56 object-cover"
-                src="img/trapo_color.jpg?random=4"
-                alt="Paños de Limpieza Industriales"
-              />
-              <div class="p-6">
-                <h3 class="font-bold text-xl mb-2 text-petrol-blue-900">
-                  Variedad en Trapos de Colores y Tamaños
-                </h3>
-                <p class="text-gray-600 text-base mb-4">
-                  Trapos de 100% algodón, en diferentes colores y tamaños. 
-                </p>
-                <a
-                  href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
-                  target="_blank"
-                  class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300"
-                >
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    class="h-5 w-5 mr-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.5 3.48 1.39 4.94L2 22l5.31-1.38c1.41.83 3.04 1.28 4.73 1.28h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.26h-.01c-1.48 0-2.92-.41-4.2-1.19l-.3-.18-3.12.81.83-3.04-.2-.32c-.85-1.35-1.3-2.9-1.3-4.52 0-4.59 3.73-8.32 8.32-8.32 4.59 0 8.32 3.73 8.32 8.32 0 4.59-3.73 8.32-8.32 8.32zm4.53-6.23c-.25-.12-1.47-.72-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.64.81-.79.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.66-1.22-1.48-1.36-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.76 2.68 4.27 3.77 2.51 1.08 2.51.72 2.96.69.45-.03 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.1-.23-.16-.48-.28z"
-                    ></path>
-                  </svg>
-                  Quiero más información!
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-12">
+            <p class="mt-4 text-lg leading-relaxed text-ink/75">
+              Trabajamos con diferentes tipos de hilados adaptándonos a sus necesidades específicas. Contáctenos para
+              recibir un presupuesto personalizado.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-ink/75">
+              Podés dejar tu carretel vacío y llevarte otro al instante sin costo adicional. Optimizá tus tiempos.
+            </p>
             <a
-              href="#contacto"
-              class="bg-white text-petrol-blue-700 border-2 border-petrol-blue-700 font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 hover:bg-petrol-blue-700 hover:text-white"
+              href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
+              target="_blank"
+              rel="noopener"
+              class="mx-auto mt-6 flex w-fit items-center gap-2 bg-ink px-4 py-2 text-sm font-semibold text-paper transition-colors hover:bg-mustard md:mx-0"
             >
-              Ver más productos
+              <svg class="h-5 w-5" aria-hidden="true"><use href="#wa" /></svg>
+              Quiero más información!
             </a>
           </div>
-        </div>
-      </section>
-
-      <!-- Services Section -->
-      <section id="servicios" class="py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="md:pr-8">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Recarga de Carreteles de Urdido
-              </h2>
-              <p class="text-lg text-gray-600 mb-4">
-                Ofrecemos un servicio único en la region de Misiones, especializado en la recarga de carreteles de
-                urdido para la industria textil. Optimizamos sus procesos
-                productivos con hilos de primera calidad y un servicio rápido y
-                confiable.
-              </p>
-              <p class="text-lg text-gray-600 mb-4">
-                Trabajamos con diferentes tipos de hilados adaptándonos a sus
-                necesidades específicas. Contáctenos para recibir un presupuesto
-                personalizado.
-              </p>
-              <p class="text-lg text-gray-600">
-                Podes dejar tu carretel vacío y llevarte otro al instante sin costo adicional. Optimizá tus tiempos.
-              </p>
-              <a href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios." target="_blank" class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
-                <svg fill="currentColor" viewBox="0 0 24 24" class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.5 3.48 1.39 4.94L2 22l5.31-1.38c1.41.83 3.04 1.28 4.73 1.28h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.26h-.01c-1.48 0-2.92-.41-4.2-1.19l-.3-.18-3.12.81.83-3.04-.2-.32c-.85-1.35-1.3-2.9-1.3-4.52 0-4.59 3.73-8.32 8.32-8.32 4.59 0 8.32 3.73 8.32 8.32 0 4.59-3.73 8.32-8.32 8.32zm4.53-6.23c-.25-.12-1.47-.72-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.64.81-.79.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.66-1.22-1.48-1.36-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.76 2.68 4.27 3.77 2.51 1.08 2.51.72 2.96.69.45-.03 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.1-.23-.16-.48-.28z"></path>
-                </svg>
-                Quiero más información!
-            </a>
-            </div>
-            <div>
-              <img
-                src="img/carretel.jpg?random=5"
-                alt="Carreteles de urdido"
-                class="rounded-xl shadow-lg w-full h-auto object-cover"
-              />
-            </div>
+          <div class="overflow-hidden">
+            <img
+              src="img/carretel.webp"
+              alt="Carreteles de urdido"
+              width="1200"
+              height="1215"
+              loading="lazy"
+              class="aspect-[4/5] w-full object-cover md:aspect-square"
+            />
           </div>
         </div>
       </section>
 
-      <!-- About Section -->
-      <section id="sobre-nosotros" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="order-2 md:order-1">
-              <img
-                src="img/sobre_nos.jpg?random=6"
-                alt="Equipo de La Nona"
-                class="rounded-xl shadow-lg w-full h-auto object-cover"
-              />
-            </div>
-            <div class="order-1 md:order-2 md:pl-8">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Sobre Nosotros
-              </h2>
-              <p class="text-lg text-gray-600 mb-4">
-                Somos una empresa familiar argentina con más de 15 años de
-                trayectoria en la fabricación de productos textiles de limpieza.
-                Nuestro compromiso es con la calidad y la industria nacional.
-              </p>
-              <p class="text-lg text-gray-600">
-                En La Nona, combinamos la tradición artesanal con tecnología
-                moderna para crear productos duraderos y eficientes. Creemos en
-                el trabajo, la honestidad y la satisfacción de nuestros clientes
-                como pilares de nuestro crecimiento.
-              </p>
-            </div>
+      <section id="sobre-nosotros" class="bg-paper">
+        <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-24 lg:gap-16">
+          <div class="flex justify-center md:order-1 md:justify-start">
+            <img
+              src="img/logo-mark.webp"
+              alt=""
+              width="420"
+              height="287"
+              class="h-48 w-auto sm:h-56"
+            />
           </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contacto" class="py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
-              Contacto y Ubicación
-            </h2>
-            <p class="text-lg text-gray-500 mt-2">
-              Estamos para ayudarle. ¡Contáctenos o visítenos!
+          <div class="md:order-2">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-mustard">La empresa</p>
+            <h2 class="mt-3 font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">Sobre Nosotros</h2>
+            <p class="mt-5 text-lg leading-relaxed text-ink/75">
+              Somos una empresa familiar argentina con más de 15 años de trayectoria en la fabricación de productos
+              textiles de limpieza. Nuestro compromiso es con la calidad y la industria nacional.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-ink/75">
+              En La Nona, combinamos la tradición artesanal con tecnología moderna para crear productos duraderos y
+              eficientes. Creemos en el trabajo, la honestidad y la satisfacción de nuestros clientes como pilares de
+              nuestro crecimiento.
             </p>
           </div>
-          <div class="max-w-3xl mx-auto bg-gray-50 p-8 rounded-xl shadow-md">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 class="text-2xl font-bold text-petrol-blue-900 mb-4">
-                  Nuestra Información
-                </h3>
-                <ul class="space-y-3 text-lg text-gray-600">
-                  <li class="flex items-center">
-                    <a
-                      href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
-                      target="_blank"
-                      class="flex items-center text-gray-600 hover:text-petrol-blue-700 transition-colors duration-300"
-                    >
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        class="h-6 w-6 mr-3 text-petrol-blue-700"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.5 3.48 1.39 4.94L2 22l5.31-1.38c1.41.83 3.04 1.28 4.73 1.28h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.26h-.01c-1.48 0-2.92-.41-4.2-1.19l-.3-.18-3.12.81.83-3.04-.2-.32c-.85-1.35-1.3-2.9-1.3-4.52 0-4.59 3.73-8.32 8.32-8.32 4.59 0 8.32 3.73 8.32 8.32 0 4.59-3.73 8.32-8.32 8.32zm4.53-6.23c-.25-.12-1.47-.72-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.64.81-.79.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.66-1.22-1.48-1.36-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.76 2.68 4.27 3.77 2.51 1.08 2.51.72 2.96.69.45-.03 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.1-.23-.16-.48-.28z"
-                        ></path>
-                      </svg>
-                      <span>+54 3754 434100</span>
-                    </a>
-                  </li>
-                  <!-- <li class="flex items-center">
-                                    <span class="mr-3 text-petrol-blue-700">📧</span>
-                                    <span>contacto@lanona.com</span>
-                                </li> -->
-                  <li class="flex items-start">
-                    <span class="mr-3 text-petrol-blue-700 mt-1">📍</span>
-                    <span>Independencia 175, Leandro N. Alem, Misiones, Argentina</span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <iframe
-                  src="https://maps.google.com/maps?q=Independencia+175,+Leandro+N.+Alem,+Misiones,+Argentina&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                  class="w-full h-64 rounded-xl shadow-md border-0"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="bg-warm">
+        <div class="mx-auto max-w-6xl px-5 py-20 md:py-24">
+          <div class="mb-12 max-w-2xl">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-mustard">Visitanos</p>
+            <h2 class="mt-3 font-display text-3xl font-semibold leading-tight text-ink md:text-5xl">Contacto y Ubicación</h2>
+            <p class="mt-4 text-lg text-ink/75">Estamos para ayudarle. ¡Contáctenos o visítenos!</p>
+          </div>
+          <div class="grid items-start gap-10 md:grid-cols-2">
+            <div>
+              <h3 class="font-display text-2xl font-semibold text-ink">Nuestra Información</h3>
+              <ul class="mt-5 space-y-4 text-lg text-ink/80">
+                <li>
+                  <a
+                    href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center gap-3 transition-colors hover:text-mustard"
+                  >
+                    <svg class="h-6 w-6 text-mustard" aria-hidden="true"><use href="#wa" /></svg>
+                    <span>+54 3754 434100</span>
+                  </a>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="mt-1 text-mustard" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+                      <path
+                        fill-rule="evenodd"
+                        d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                  <span>Independencia 175, Leandro N. Alem, Misiones, Argentina</span>
+                </li>
+              </ul>
             </div>
+            <iframe
+              src="https://maps.google.com/maps?q=Independencia+175,+Leandro+N.+Alem,+Misiones,+Argentina&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              class="h-72 w-full"
+              title="Mapa de Textil La Nona"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-petrol-blue-950 text-white">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div
-          class="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0"
-        >
-          <div class="text-sm text-gray-300">
-            &copy; <span id="current-year"></span> La Nona. Todos los derechos
-            reservados.
-          </div>
-          <div class="flex space-x-6">
-            <a
-              href="#inicio"
-              class="text-gray-400 hover:text-white transition-colors duration-300"
-              >Inicio</a
-            >
-            <a
-              href="#productos"
-              class="text-gray-400 hover:text-white transition-colors duration-300"
-              >Productos</a
-            >
-            <a
-              href="#contacto"
-              class="text-gray-400 hover:text-white transition-colors duration-300"
-              >Contacto</a
-            >
-          </div>
-          <div class="flex space-x-4">
-            <a
-              href="#contacto"
-              aria-label="Facebook"
-              class="text-gray-400 hover:text-white transition-colors duration-300"
-            >
-              <svg
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                class="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                ></path>
-              </svg>
-            </a>
-            <a
-              href="#contacto"
-              aria-label="Instagram"
-              class="text-gray-400 hover:text-white transition-colors duration-300"
-            >
-              <svg
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                class="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.012-3.584.07-4.85C2.31 3.854 3.83 2.31 7.081 2.163 8.346 2.105 8.724 2.093 12 2.093m0-2.093c-3.264 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98C.014 8.333 0 8.736 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.28.058 1.683.072 4.947.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.28.072-1.683.072-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.264 0 12 0z"
-                ></path>
-                <path
-                  d="M12 6.848c-2.835 0-5.152 2.316-5.152 5.152s2.316 5.152 5.152 5.152 5.152-2.316 5.152-5.152-2.316-5.152-5.152-5.152zm0 8.302c-1.743 0-3.15-1.407-3.15-3.15s1.407-3.15 3.15-3.15 3.15 1.407 3.15 3.15-1.407 3.15-3.15 3.15zm6.35-8.508c-.78 0-1.412.633-1.412 1.413s.633 1.413 1.413 1.413 1.413-.633 1.413-1.413-.632-1.413-1.413-1.413z"
-                ></path>
-              </svg>
-            </a>
-            <a
-              href="#contacto"
-              aria-label="WhatsApp"
-              class="text-gray-400 hover:text-white transition-colors duration-300"
-            >
-              <svg
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                class="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.5 3.48 1.39 4.94L2 22l5.31-1.38c1.41.83 3.04 1.28 4.73 1.28h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.26h-.01c-1.48 0-2.92-.41-4.2-1.19l-.3-.18-3.12.81.83-3.04-.2-.32c-.85-1.35-1.3-2.9-1.3-4.52 0-4.59 3.73-8.32 8.32-8.32 4.59 0 8.32 3.73 8.32 8.32 0 4.59-3.73 8.32-8.32 8.32zm4.53-6.23c-.25-.12-1.47-.72-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.64.81-.79.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.66-1.22-1.48-1.36-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.76 2.68 4.27 3.77 2.51 1.08 2.51.72 2.96.69.45-.03 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.1-.23-.16-.48-.28z"
-                ></path>
-              </svg>
-            </a>
-          </div>
+    <footer class="bg-deep text-paper">
+      <div class="mx-auto flex max-w-6xl flex-col items-center gap-6 px-5 py-10 text-center md:flex-row md:justify-between md:text-left">
+        <p class="text-sm text-paper/70">&copy; <span id="current-year"></span> La Nona. Todos los derechos reservados.</p>
+        <nav class="flex gap-6 text-sm text-paper/70">
+          <a href="#inicio" class="transition-colors hover:text-paper">Inicio</a>
+          <a href="#productos" class="transition-colors hover:text-paper">Productos</a>
+          <a href="#contacto" class="transition-colors hover:text-paper">Contacto</a>
+        </nav>
+        <div class="flex gap-4 text-paper/70">
+          <a href="#contacto" aria-label="Facebook" class="transition-colors hover:text-paper">
+            <svg fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true">
+              <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+            </svg>
+          </a>
+          <a href="#contacto" aria-label="Instagram" class="transition-colors hover:text-paper">
+            <svg fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.012-3.584.07-4.85C2.31 3.854 3.83 2.31 7.081 2.163 8.346 2.105 8.724 2.093 12 2.093m0-2.093c-3.264 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98C.014 8.333 0 8.736 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.28.058 1.683.072 4.947.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.28.072-1.683.072-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.264 0 12 0z" />
+              <path d="M12 6.848c-2.835 0-5.152 2.316-5.152 5.152s2.316 5.152 5.152 5.152 5.152-2.316 5.152-5.152-2.316-5.152-5.152-5.152zm0 8.302c-1.743 0-3.15-1.407-3.15-3.15s1.407-3.15 3.15-3.15 3.15 1.407 3.15 3.15-1.407 3.15-3.15 3.15zm6.35-8.508c-.78 0-1.412.633-1.412 1.413s.633 1.413 1.413 1.413 1.413-.633 1.413-1.413-.632-1.413-1.413-1.413z" />
+            </svg>
+          </a>
+          <a
+            href="https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios."
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+            class="transition-colors hover:text-paper"
+          >
+            <svg class="h-6 w-6" aria-hidden="true"><use href="#wa" /></svg>
+          </a>
         </div>
       </div>
     </footer>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Mobile menu toggle
         const menuButton = document.getElementById("mobile-menu-button");
         const mobileMenu = document.getElementById("mobile-menu");
         const openIcon = document.getElementById("open-icon");
         const closeIcon = document.getElementById("close-icon");
 
         menuButton.addEventListener("click", function () {
-          mobileMenu.classList.toggle("hidden");
-          openIcon.classList.toggle("hidden");
-          closeIcon.classList.toggle("hidden");
+          const isOpen = mobileMenu.classList.toggle("hidden") === false;
+          openIcon.classList.toggle("hidden", isOpen);
+          closeIcon.classList.toggle("hidden", !isOpen);
+          menuButton.setAttribute("aria-expanded", String(isOpen));
+          menuButton.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
         });
 
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
-        mobileMenuLinks.forEach((link) => {
+        mobileMenu.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", () => {
             mobileMenu.classList.add("hidden");
             openIcon.classList.remove("hidden");
             closeIcon.classList.add("hidden");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.setAttribute("aria-label", "Abrir menú");
           });
         });
 
-        // Set current year in footer
-        document.getElementById("current-year").textContent =
-          new Date().getFullYear();
+        document.getElementById("current-year").textContent = new Date().getFullYear();
       });
     </script>
-    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
