@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://textillanona.com.ar/sitemap.xml

@@ -1,0 +1,427 @@
+---
+import Layout from "../layouts/Layout.astro";
+import VideoReel from "../components/VideoReel.astro";
+
+const wa =
+  "https://wa.me/543754434100?text=Hola!%20quiero%20mas%20información%20acerca%20de%20sus%20productos%20y%20servicios.";
+const waReseller =
+  "https://wa.me/543754434100?text=Hola!%20quiero%20el%20precio%20especial%20para%20revendedores.";
+const year = new Date().getFullYear();
+
+const nav = [
+  ["#inicio", "Inicio"],
+  ["#productos", "Productos"],
+  ["#proceso", "Proceso"],
+  ["#servicios", "Servicios"],
+  ["#revendedores", "Revendedores"],
+  ["#sobre-nosotros", "Nosotros"],
+  ["#contacto", "Contacto"],
+];
+---
+
+<Layout>
+  <header class="site-head">
+    <div class="wrap site-head-inner">
+      <a class="brand" href="#inicio">
+        <img src="/img/logo-mark.webp" alt="" width="420" height="287" />
+        <span class="brand-name">TEXTIL<br />LA NONA</span>
+      </a>
+      <nav class="nav-desk" aria-label="Principal">
+        {nav.map(([href, label]) => <a href={href}>{label}</a>)}
+      </nav>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú">
+        <span></span>
+      </button>
+    </div>
+    <nav id="menu-movil" class="wrap nav-mobile" aria-label="Móvil">
+      {nav.map(([href, label]) => <a href={href}>{label}</a>)}
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-media" aria-hidden="true">
+        <VideoReel
+          stem="loom"
+          caption="Telar industrial en funcionamiento"
+          eager
+        />
+      </div>
+      <div class="hero-wash"></div>
+      <div class="wrap hero-copy reveal">
+        <p class="eyebrow">Empresa familiar de Misiones</p>
+        <h1>Calidad textil argentina para tu hogar y tu taller</h1>
+        <p class="lede">
+          Soluciones en limpieza y urdido con la confianza y durabilidad que nos caracteriza.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="#productos">Ver Productos</a>
+          <a class="btn btn-ghost" href={wa} target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#wa"></use></svg>
+            Escribinos
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="note">
+      <div class="wrap reveal">
+        <p>
+          Hacé tu pedido online y te lo enviamos a todo el país: trapos de piso y carreteles
+          de una fábrica familiar, con el trato de siempre.
+        </p>
+      </div>
+    </section>
+
+    <section class="catalog" id="productos">
+      <div class="wrap">
+        <div class="catalog-head reveal">
+          <p class="eyebrow">Productos</p>
+          <h2>Nuestros Productos</h2>
+          <p class="lede">Fabricación nacional con la mejor materia prima.</p>
+        </div>
+
+        <article class="piece reveal">
+          <div class="piece-photo" data-parallax>
+            <img
+              src="/img/trapo.webp"
+              alt="Trapo de Piso Premium"
+              width="1200"
+              height="1600"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3>Trapo de Piso Premium</h3>
+            <p>100% algodón, máxima absorción y durabilidad. Ideal para todo tipo de superficies.</p>
+            <a class="btn btn-ink" href={wa} target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#wa"></use></svg>
+              Quiero más información!
+            </a>
+          </div>
+        </article>
+
+        <article class="piece is-flip reveal">
+          <div class="piece-photo" data-parallax>
+            <img
+              src="/img/urdido.webp"
+              alt="Recarga de urdido"
+              width="1200"
+              height="900"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3>Recarga de Urdido</h3>
+            <p>Recarga de carreteles de urdido. Urdido 12/2 y 8/1. Carreteles de 70cm y 100cm.</p>
+            <a class="btn btn-ink" href={wa} target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#wa"></use></svg>
+              Quiero más información!
+            </a>
+          </div>
+        </article>
+
+        <article class="piece reveal">
+          <div class="piece-photo" data-parallax>
+            <img
+              src="/img/trapo-color.webp"
+              alt="Trapos de colores y tamaños"
+              width="1200"
+              height="1600"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3>Variedad en Trapos de Colores y Tamaños</h3>
+            <p>Trapos de 100% algodón, en diferentes colores y tamaños.</p>
+            <a class="btn btn-ink" href={wa} target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#wa"></use></svg>
+              Quiero más información!
+            </a>
+          </div>
+        </article>
+
+        <a class="more-link" href="#contacto">Ver más productos</a>
+      </div>
+    </section>
+
+    <section class="process" id="proceso">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Cómo trabajamos</p>
+          <h2>Un intercambio sencillo, de fábrica a taller</h2>
+          <p class="lede">
+            Somos una empresa familiar de Misiones. Te recibimos, preparamos lo que
+            pedís y, si venís con el carretel vacío, te llevás otro listo para seguir.
+          </p>
+        </div>
+        <div class="process-grid">
+          <article class="step reveal">
+            <p class="step-n">01</p>
+            <h3>Contanos qué necesitás</h3>
+            <p>
+              Por WhatsApp, por teléfono o visitándonos en Leandro N. Alem. Hablamos
+              de trapos, colores, tamaños o de la recarga de urdido 12/2 y 8/1.
+            </p>
+          </article>
+          <article class="step reveal">
+            <p class="step-n">02</p>
+            <h3>Preparamos el pedido</h3>
+            <p>
+              En la fábrica armamos tu pedido con materia prima de calidad:
+              trapos de algodón o el urdido para tus carreteles de 70 cm y 100 cm.
+            </p>
+          </article>
+          <article class="step reveal">
+            <p class="step-n">03</p>
+            <h3>El intercambio del carretel</h3>
+            <p>
+              Podés dejar tu carretel vacío y llevarte otro al instante sin costo
+              adicional. Optimizá tus tiempos.
+            </p>
+          </article>
+          <article class="step reveal">
+            <p class="step-n">04</p>
+            <h3>Seguimos cerca</h3>
+            <p>
+              Cuando tu taller o tu negocio necesita reponer, volvés a escribirnos.
+              El trato es el de una casa de familia que conoce a sus clientes.
+            </p>
+          </article>
+        </div>
+        <div class="process-film reveal">
+          <VideoReel stem="spools" caption="Conos de hilo en maquinaria textil industrial" />
+        </div>
+      </div>
+    </section>
+
+    <section class="neighbors" id="abastecemos">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">A quiénes abastecemos</p>
+          <h2>De la casa al taller, con la misma tela</h2>
+          <p class="lede">
+            Atendemos a quienes limpian todos los días y a quienes tejen o revenden.
+            Si buscás calidad de fábrica, de cerca, este es el lugar.
+          </p>
+        </div>
+        <div class="who-grid">
+          <article class="who-card reveal">
+            <h3>Hogares y limpieza diaria</h3>
+            <p>Trapos de piso de algodón, pensados para superficies de todos los días.</p>
+          </article>
+          <article class="who-card reveal">
+            <h3>Comercios y reventa</h3>
+            <p>Quien compra para vender encuentra precio de fábrica y variedad de colores y tamaños.</p>
+          </article>
+          <article class="who-card reveal">
+            <h3>Talleres textiles</h3>
+            <p>Recarga de carreteles de urdido 12/2 y 8/1, en 70 cm y 100 cm, para seguir produciendo.</p>
+          </article>
+          <article class="who-card reveal">
+            <h3>Trato directo con la fábrica</h3>
+            <p>Somos una empresa familiar de Misiones: te atendemos nosotros, sin vueltas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="servicios">
+      <div class="wrap services-layout">
+        <div class="services-copy reveal">
+          <p class="eyebrow">Servicios</p>
+          <h2>Recarga de Carreteles de Urdido</h2>
+          <p class="lede">
+            Ofrecemos un servicio único en la región de Misiones, especializado en la recarga de carreteles de
+            urdido para la industria textil. Optimizamos sus procesos productivos con hilos de primera calidad y un
+            servicio rápido y confiable.
+          </p>
+          <p>
+            Trabajamos con diferentes tipos de hilados adaptándonos a sus necesidades específicas. Contáctenos para
+            recibir un presupuesto personalizado.
+          </p>
+          <p>
+            Podés dejar tu carretel vacío y llevarte otro al instante sin costo adicional. Optimizá tus tiempos.
+          </p>
+          <a class="btn btn-ink" href={wa} target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#wa"></use></svg>
+            Quiero más información!
+          </a>
+        </div>
+        <div class="services-visual reveal">
+          <div class="portrait" data-parallax>
+            <img
+              src="/img/carretel.webp"
+              alt="Carreteles de urdido"
+              width="1200"
+              height="1215"
+              loading="lazy"
+            />
+          </div>
+          <VideoReel stem="thread" caption="Hilo blanco enrollándose en maquinaria textil" />
+        </div>
+      </div>
+    </section>
+
+    <section class="wholesale" id="revendedores">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Revendedores</p>
+          <h2>Precios especiales para revendedores</h2>
+          <p class="lede">
+            Si comprás para volver a vender, pedí tu cotización. Trapos y urdido, directo de fábrica.
+          </p>
+        </div>
+        <div class="perk-grid">
+          <article class="perk reveal">
+            <h3>Precio de reventa</h3>
+            <p>Cotización especial para quien compra para vender.</p>
+          </article>
+          <article class="perk reveal">
+            <h3>Hecho en el país</h3>
+            <p>Trapos de algodón y urdido, fabricación nacional en Misiones.</p>
+          </article>
+          <article class="perk reveal">
+            <h3>Para tu negocio</h3>
+            <p>Colores, tamaños y carreteles de 70 cm y 100 cm, urdido 12/2 y 8/1.</p>
+          </article>
+          <article class="perk reveal">
+            <h3>Reposición al instante</h3>
+            <p>Dejás el carretel vacío y te llevás otro.</p>
+          </article>
+        </div>
+        <a class="btn btn-gold" href={waReseller} target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#wa"></use></svg>
+          Pedir precio de revendedor
+        </a>
+      </div>
+    </section>
+
+    <section class="about" id="sobre-nosotros">
+      <div class="wrap about-layout">
+        <div class="about-mark reveal">
+          <img src="/img/logo-mark.webp" alt="" width="420" height="287" />
+        </div>
+        <div class="about-copy reveal">
+          <p class="eyebrow">La empresa</p>
+          <h2>Sobre Nosotros</h2>
+          <p class="lede">
+            Somos una empresa familiar argentina con más de 15 años de trayectoria en la fabricación de productos
+            textiles de limpieza. Nuestro compromiso es con la calidad y la industria nacional.
+          </p>
+          <p>
+            En La Nona, combinamos la tradición artesanal con tecnología moderna para crear productos duraderos y
+            eficientes. Creemos en el trabajo, la honestidad y la satisfacción de nuestros clientes como pilares de
+            nuestro crecimiento.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="preguntas">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Consultas frecuentes</p>
+          <h2>Lo que nos preguntan en la fábrica</h2>
+        </div>
+        <details class="reveal">
+          <summary>¿Hacen recarga de urdido?</summary>
+          <p>
+            Sí. Recargamos carreteles de urdido 12/2 y 8/1, en medidas de 70 cm y 100 cm, para la industria textil.
+          </p>
+        </details>
+        <details class="reveal">
+          <summary>¿Puedo dejar el carretel vacío y llevarme otro?</summary>
+          <p>
+            Sí. Podés dejar tu carretel vacío y llevarte otro al instante sin costo adicional.
+          </p>
+        </details>
+        <details class="reveal">
+          <summary>¿Los trapos son de algodón?</summary>
+          <p>
+            Sí. Nuestros trapos de piso son 100% algodón, con máxima absorción y durabilidad, en distintos colores y tamaños.
+          </p>
+        </details>
+        <details class="reveal">
+          <summary>¿Tienen precio especial para revendedores?</summary>
+          <p>
+            Sí. Si comprás para volver a vender, pedí tu cotización. Trapos y urdido, directo de fábrica.
+          </p>
+        </details>
+        <details class="reveal">
+          <summary>¿Dónde están?</summary>
+          <p>
+            En Independencia 175, Leandro N. Alem, Misiones, Argentina. También podés escribirnos por WhatsApp al +54 3754 434100.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section class="visit" id="contacto">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Visitanos</p>
+          <h2>Contacto y Ubicación</h2>
+          <p class="lede">Estamos para ayudarle. ¡Contáctenos o visítenos!</p>
+        </div>
+        <div class="visit-grid">
+          <div class="reveal">
+            <h3>Nuestra Información</h3>
+            <ul>
+              <li>
+                <a href={wa} target="_blank" rel="noopener">
+                  <svg width="24" height="24" aria-hidden="true"><use href="#wa"></use></svg>
+                  <span>+54 3754 434100</span>
+                </a>
+              </li>
+              <li class="visit-addr">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span>Independencia 175, Leandro N. Alem, Misiones, Argentina</span>
+              </li>
+            </ul>
+          </div>
+          <iframe
+            class="map-frame reveal"
+            src="https://maps.google.com/maps?q=Independencia+175,+Leandro+N.+Alem,+Misiones,+Argentina&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            title="Mapa de Textil La Nona"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap site-foot-inner">
+      <p>&copy; <span id="current-year">{year}</span> La Nona. Todos los derechos reservados.</p>
+      <nav aria-label="Pie">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="socials">
+        <a href="#contacto" aria-label="Facebook">
+          <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path>
+          </svg>
+        </a>
+        <a href="#contacto" aria-label="Instagram">
+          <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.012-3.584.07-4.85C2.31 3.854 3.83 2.31 7.081 2.163 8.346 2.105 8.724 2.093 12 2.093m0-2.093c-3.264 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98C.014 8.333 0 8.736 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.28.058 1.683.072 4.947.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.28.072-1.683.072-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.264 0 12 0z"></path>
+            <path d="M12 6.848c-2.835 0-5.152 2.316-5.152 5.152s2.316 5.152 5.152 5.152 5.152-2.316 5.152-5.152-2.316-5.152-5.152-5.152zm0 8.302c-1.743 0-3.15-1.407-3.15-3.15s1.407-3.15 3.15-3.15 3.15 1.407 3.15 3.15-1.407 3.15-3.15 3.15zm6.35-8.508c-.78 0-1.412.633-1.412 1.413s.633 1.413 1.413 1.413 1.413-.633 1.413-1.413-.632-1.413-1.413-1.413z"></path>
+          </svg>
+        </a>
+        <a href={wa} target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg aria-hidden="true"><use href="#wa"></use></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</Layout>
